@@ -9,11 +9,13 @@ for i in range(0, candidate):
 
 voters = int(input("Enter a number of voter(s) : "))
 ballots = [int(i) for i in input().split()]
+del ballots[voters:]
 
-for ballot in ballots:
-    if ballot in range(1, 21):
-        candidate_count[ballot-1] += 1
-        
+for i in range(candidate):
+    for ballot in ballots:
+        if ballot>0:
+            candidate_count[i] += (1 if ballot == i+1 else 0)
+
 candidate_count.insert(0, 0)
 temp_check_winner = 0
 
@@ -26,3 +28,4 @@ if winner_candidate in range(1, candidate+1) :
     print(winner_candidate)
 else:
     print("*** No Candidate Wins ***")
+    
