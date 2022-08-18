@@ -1,18 +1,19 @@
-# TODO
+# Pyramid
 
-# print("*** Fun with Drawing ***")
-# size_input = int(input("Enter input : "))
+print("*** Fun with Drawing ***")
+size_input = int(input("Enter input : "))
 
-# print('#')
-# print('.')
-# odd สลับ
-#################
-rows = 17
-cols = 17
+rows = (2*2*(size_input-1))+1
+half = (2*size_input)-1
 sharp = '#'
-star = '*'
+dot = '.'
 
 for row in range(1, rows+1):
+    pack = int(row/2) if row <= half else int(row/2)-(row-(half))
+
     if row == 1 or row == rows:
         print(sharp*rows)
-    print(row) 
+    elif row%2 == 0:
+        print((sharp+dot)*pack, dot*(rows-(4*pack)), (dot+sharp)*pack, sep="")
+    else:
+        print((sharp+dot)*pack, sharp*(rows-(4*pack)),(dot+sharp)*pack, sep="")

@@ -1,5 +1,4 @@
 # Bus
-# TODO
 
 class Bus:
     def __init__(self, people, fare):
@@ -11,16 +10,13 @@ class Bus:
         + ' people with fare = ' + str(self.fare)
 
     def __lt__(self, rhs):
-        return self.people*self.fare < \
-                 rhs.people*rhs.fare
+        return self.people*self.fare < rhs.people*rhs.fare
 
     def people_in(self, k):
         self.people += k
 
     def people_out(self, k):
-        if k < 0:
-            k=0
-        self.people -= k
+        self.people -= (k if self.people >= k else self.people)
 
     def change_fare(self, new_fare):
         self.fare = new_fare

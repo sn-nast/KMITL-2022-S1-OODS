@@ -1,4 +1,4 @@
-import math
+# BMI
 
 h,w = [float(i) for i in input("Enter your High and Weight : ").split()]
 bmi = w / (h**2)
