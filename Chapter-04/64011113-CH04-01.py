@@ -1,4 +1,5 @@
-# Queue
+# Queue #1
+
 class Queue:
     
     def __init__(self, list=None):
@@ -16,11 +17,20 @@ class Queue:
     def size(self):
         return len(self._items)
     
+    def __str__(self):
+        return str(self._items) if self.size() > 0 else "Empty"
 
-# q = Queue()
-# print(q._items)
+def queue_cmd(list_cmd):
+    queue = Queue()
+    for i in list_cmd:
+        if i[0] == 'E':
+            queue.en_queue(i[1])
+            print(f"Add {i[1]} index is {queue.size() - 1}")
+        elif i[0] == 'D':
+            if queue.size() < 1: print("-1")
+            else: print(f"Pop {queue.de_queue()} size in queue is {queue.size()}")
+    
+    print((f"Number in Queue is :  {queue}") if queue.size() > 0 else queue) 
+
 input_cmd = [str(i).split(" ") for i in input("Enter Input : ").split(",")]
-# input_cmd = [input("Enter Input : ").split(",")]
-# input_cmd 
-print(type(input_cmd))
-print(input_cmd)
+queue_cmd(input_cmd)
