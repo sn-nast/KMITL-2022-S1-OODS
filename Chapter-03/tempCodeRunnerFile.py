@@ -1,2 +1,0 @@
-
-            print(tree_stack)
