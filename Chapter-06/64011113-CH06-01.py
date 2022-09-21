@@ -1,35 +1,20 @@
-"""
-Chapter : 6 - item : 1 - print N
- ส่งมาแล้ว 0 ครั้ง
-จงเขียนฟังก์ชั่นที่แสดงผลเลข 1 จนถึง n
-
-และฟังก์ชั่นที่แสดงผลเลขตั้งแต่ n จนถึง 1
-
-โดยแสดงผลตามตัวอย่าง
-
-****ห้ามใช้คำสั่ง len, for, while, do while, split*****
-
-หมายเหตุ ฟังก์ชันต้องมี parameter แค่เพียง 1 ตัว
+# print N
 
 def print1ToN(n):
-    #code here
+    if n > 1:
+        print1ToN(n-1)
+        print(n, end=" ")
+    else:
+        print(1, end=" ")
 
 def printNto1(n):
-    #code here
+    if n > 1:
+        print(n, end=" ")
+        printNto1(n-1)
+    else:
+        print(1, end=" ")
 
 n = int(input("Enter Input : "))
-
+# n = 0
 print1ToN(n)
 printNto1(n)
-
-
-Enter Input : 6
-1 2 3 4 5 6 6 5 4 3 2 1 
-
-Enter Input : -1
-1 1 
-
-Enter Input : 1
-1 1 
-
-"""

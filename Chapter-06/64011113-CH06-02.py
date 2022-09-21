@@ -1,19 +1,23 @@
-"""
-Chapter : 6 - item : 2 - Reverse Sort List
- ส่งมาแล้ว 0 ครั้ง
-จงเขียนฟังก์ชั่นสำหรับการเรียงค่าใน List ของจำนวนเต็มโดยจะเรียงค่าจากมากไปน้อย
+# Reverse Sort List
+def sort_list(list: list):
+    insertion_sort(list)
+    print(f"List after Sorted : {list}")
 
-****ห้ามใช้ for/while และฟังก์ชั่นอื่นๆในการวนลูป ให้ใช้ recursion ในการเขียนเท่านั้น**
+def insertion_sort(list:list, round=1):
+    n = len(list) 
+    if n > round:
+        key = list[round]
+        new_index = rearrange(list, key, round-1)
+        list[new_index+1] = key
+        insertion_sort(list, round+1)
 
+def rearrange(list:list, key, index):
+    if index >= 0 and key > list[index]:
+        list[index+1] = list[index]
+        index = rearrange(list, key, index-1)
+    return index
 
-Enter your List : 1,2,3,4,5,6,7,8
-List after Sorted : [8, 7, 6, 5, 4, 3, 2, 1]
-
-Enter your List : 4,1,3,4,6,9,5,6,7,8
-List after Sorted : [9, 8, 7, 6, 6, 5, 4, 4, 3, 1]
-
-
-Enter your List : 0,0,0,0,0
-List after Sorted : [0, 0, 0, 0, 0]
-
-"""
+list_input = input("Enter your List : ").split(',')
+# list_input = "0,0,0,0,0".split(',')
+list_input = list(map(int, list_input))
+sort_list(list_input)

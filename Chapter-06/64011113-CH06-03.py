@@ -1,41 +1,28 @@
-"""
-Chapter : 6 - item : 3 - GCD
- ส่งมาแล้ว 0 ครั้ง
-เขียนโปรแกรมสำหรับหา หรม. ของเลข 2 ตัว
+#  GCD
 
-****ห้ามใช้คำสั่ง len, for, while, do while หรือ *****
+def find_gcd(g_number, l_number):
+    answer = 0
+    l_number = abs(l_number)
+    g_number = abs(g_number)
+    
+    if l_number > g_number:
+        g_number, l_number = l_number, g_number
+    elif g_number == 0 and l_number == 0:
+        return False
+    
+    if l_number == 0:
+        return g_number
+    elif g_number%l_number == 0:
+        answer = l_number
+    else:
+        answer = find_gcd(l_number, g_number%l_number)
+    return answer
 
-หมายเหตุ ฟังก์ชันต้องมี parameter แค่เพียง 2 ตัว
-
-บทนิยาม
-
-ตัวหารร่วมมาก หรือ ห.ร.ม. (อังกฤษ: greatest common divisor: gcd) ของจำนวนเต็มสองจำนวนซึ่งไม่เป็นศูนย์พร้อมกัน คือจำนวนเต็มที่มากที่สุดที่หารทั้งสองจำนวนลงตัว
-
-
-Enter Input : 8 4
-The gcd of 8 and 4 is : 4
-
-Enter Input : 10 20
-The gcd of 20 and 10 is : 10
-
-
-Enter Input : 12 18
-The gcd of 18 and 12 is : 6
-
-
-Enter Input : 9 7
-The gcd of 9 and 7 is : 1
-
-Enter Input : 0 5
-The gcd of 5 and 0 is : 5
-
-Enter Input : -6 9
-The gcd of 9 and -6 is : 3
-
-Enter Input : -24 -36
-The gcd of -36 and -24 is : 12
-
-Enter Input : 0 0
-Error! must be not all zero.
-
-"""
+input = list(map(int, input("Enter Input : ").split(" ")))
+answer = find_gcd(input[0], input[1])
+if input[1] > input[0]:
+    input = [input[1], input[0]]
+if answer is False:
+    print("Error! must be not all zero.")
+else:
+    print(f"The gcd of {input[0]} and {input[1]} is : {answer}")

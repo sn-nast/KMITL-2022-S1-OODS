@@ -1,165 +1,76 @@
-"""
-Chapter : 6 - item : 4 - หอคอยแห่งฮานอย
- ส่งมาแล้ว 0 ครั้ง
-เขียนโปรแกรมแก้ปัญหา หอคอยแห่งฮานอย โดยเราจะมีแทงไม้อยู่3แท่งคือ A B C และรับ input เป็นจำนวนแผ่นไม้ที่วางซ้อนกันให้แสดงลำดับการย้ายแผ่นไม้ทั้งหมดจากแท่ง A ไปยัง แท่งC โดยแผ่นไม้ที่มีขนาดเล็กกว่าจะอยู่ข้างบนแผ่นไม้ที่มีขนาดใหม่กว่าเสมอ(ห้ามวางแผ่นเล็กกว่าไว้ข้างล่าง)
+# Tower of Hanoi
 
-****ห้ามใช้คำสั่ง for, while, do while*****
+def move(n, A, C, B, maxn):
+    if n == 1:
+        print(f"move {n} from  {A} to {C}")
+        replace_value(n, C)
+        show_tower(maxn)
+    else:
+        move(n-1, A, B, C, maxn)
+        print(f"move {n} from  {A} to {C}")
+        replace_value(n, C)
+        show_tower(maxn)
+        move(n-1, B, C, A, maxn)
+        
+def replace_value(n, next_tower):
+    index_a = tower_a.index(str(n)) if str(n) in tower_a else -1
+    index_b = tower_b.index(str(n)) if str(n) in tower_b else -1
+    index_c = tower_c.index(str(n)) if str(n) in tower_c else -1
+    index = None
+    tower_focused = None
+    
+    if index_a != -1:
+        index = index_a
+        tower_focused = tower_a
+    elif index_b != -1:
+        index = index_b
+        tower_focused = tower_b
+    elif index_c != -1:
+        index = index_c
+        tower_focused = tower_c
+        
+    tower_moved = None
+    if next_tower == "A":
+        tower_moved = tower_a
+    elif next_tower == "B":
+        tower_moved = tower_b
+    elif next_tower == "C":
+        tower_moved = tower_c
+    
+    inserted_index = find_inserted_index(tower_moved)
+    tower_moved[inserted_index] = str(n)
+    tower_focused[index] = "|"
 
-หมายเหตุ ทุกฟังก์ชันต้องมี parameter มากที่สุดไม่เกิน 5 ตัว
+def find_inserted_index(list:list, index=-1):
+    if list[index] != "|":
+        index = find_inserted_index(list, index-1)
+    return index
 
-คำแนะนำ ให้สร้างฟังก์ชันสำหรับแสดงผล แยกต่างหาก และใช้ list ในการเก็บข้อมูลของแท่งไม้แต่ละแท่ง
-และให้ระวังเรื่องการสลับ list ให้ดีๆ
+def show_tower(stop, now=0):
+    if stop+1 > now:
+        print('  '.join([tower_a[now], tower_b[now], tower_c[now]]))
+        show_tower(stop, now=now+1)
+    
+def make_tower(n):
+    global tower_a
+    global tower_b
+    global tower_c
+    tower_a = ['|']
+    tower_b = ['|']
+    tower_c = ['|']
+    tower_b = tower_b*(n+1)
+    tower_c = tower_c*(n+1)
+    add_value(tower_a, n)
 
-หากมีข้อสงสัยเกี่ยวกับ หอคอยแห่งฮานอย สามารถสอบถาม TA เพิ่มเติม หรือ ลองเล่นได้ที่ https://www.mathsisfun.com/games/towerofhanoi.html
+def add_value(list:list, stop, now=1):
+    list.append(str(now))
+    if now != stop:
+        add_value(list, stop, now+1)
+    else: 
+        return
 
-def move(n,A,B,C,maxn):
-    #code here
 n = int(input("Enter Input : "))
-
-Enter Input : 3
-|  |  |
-1  |  |
-2  |  |
-3  |  |
-move 1 from  A to C
-|  |  |
-|  |  |
-2  |  |
-3  |  1
-move 2 from  A to B
-|  |  |
-|  |  |
-|  |  |
-3  2  1
-move 1 from  C to B
-|  |  |
-|  |  |
-|  1  |
-3  2  |
-move 3 from  A to C
-|  |  |
-|  |  |
-|  1  |
-|  2  3
-move 1 from  B to A
-|  |  |
-|  |  |
-|  |  |
-1  2  3
-move 2 from  B to C
-|  |  |
-|  |  |
-|  |  2
-1  |  3
-move 1 from  A to C
-|  |  |
-|  |  1
-|  |  2
-|  |  3
-
-
-
-
-Enter Input : 4
-|  |  |
-1  |  |
-2  |  |
-3  |  |
-4  |  |
-move 1 from  A to B
-|  |  |
-|  |  |
-2  |  |
-3  |  |
-4  1  |
-move 2 from  A to C
-|  |  |
-|  |  |
-|  |  |
-3  |  |
-4  1  2
-move 1 from  B to C
-|  |  |
-|  |  |
-|  |  |
-3  |  1
-4  |  2
-move 3 from  A to B
-|  |  |
-|  |  |
-|  |  |
-|  |  1
-4  3  2
-move 1 from  C to A
-|  |  |
-|  |  |
-|  |  |
-1  |  |
-4  3  2
-move 2 from  C to B
-|  |  |
-|  |  |
-|  |  |
-1  2  |
-4  3  |
-move 1 from  A to B
-|  |  |
-|  |  |
-|  1  |
-|  2  |
-4  3  |
-move 4 from  A to C
-|  |  |
-|  |  |
-|  1  |
-|  2  |
-|  3  4
-move 1 from  B to C
-|  |  |
-|  |  |
-|  |  |
-|  2  1
-|  3  4
-move 2 from  B to A
-|  |  |
-|  |  |
-|  |  |
-|  |  1
-2  3  4
-move 1 from  C to A
-|  |  |
-|  |  |
-|  |  |
-1  |  |
-2  3  4
-move 3 from  B to C
-|  |  |
-|  |  |
-|  |  |
-1  |  3
-2  |  4
-move 1 from  A to B
-|  |  |
-|  |  |
-|  |  |
-|  |  3
-2  1  4
-move 2 from  A to C
-|  |  |
-|  |  |
-|  |  2
-|  |  3
-|  1  4
-move 1 from  B to C
-|  |  |
-|  |  1
-|  |  2
-|  |  3
-|  |  4
-
-
-
-
-
-
-"""
+# n = 4
+make_tower(n)
+show_tower(n)
+move(n, "A", "C", "B", n)

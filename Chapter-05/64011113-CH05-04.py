@@ -220,6 +220,6 @@ class VimEditor:
         if cursor.previous == None and cursor.next == None:
             self.list = LinkedList()
 
-input = "I I,I KMITL,L,L,R,I Love,D,I DataStructure,L,L,R,L,R,B,I Hate".split(',')
+input = input("Enter Input : ").split(',')
 vim = VimEditor()
 vim.add_input(input)
