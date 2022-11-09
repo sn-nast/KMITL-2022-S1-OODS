@@ -1,0 +1,228 @@
+Chapter : 9 - item : 1 - bubble sort [recursive]
+ ส่งมาแล้ว 0 ครั้ง
+เขียน function bubble sort เพื่อเรียงข้อมูลใน list จากน้อยไปมาก 
+โดยใช้ recursive
+
+***ห้ามใช้ คำสั่งloopต่างๆ เช่น for ,while หรือ Built-in Function 
+ที่เกี่ยวกับ Sort เช่น .sort***
+
+*** ยกเว้นให้ใช้  for ได้แค่ขั้นตอนรับ input เท่านั้น ***
+
+Enter Input : 4 3 2 1
+[1, 2, 3, 4]
+
+Enter Input : 3 2 1 5 6 7
+[1, 2, 3, 5, 6, 7]
+
+Enter Input : 1 2 3 4 5
+[1, 2, 3, 4, 5]
+
+
+
+Chapter : 9 - item : 2 - เรียงลำดับโดยไม่สนจำนวนเต็มลบ
+ ส่งมาแล้ว 0 ครั้ง
+ให้เรียงลำดับ input จากน้อยไปมากของจำนวนเต็มบวกและศูนย์ 
+โดยถ้าหากเป็นจำนวนเต็มลบไม่ต้องยุ่งกับมัน
+
+****** ห้ามใช้ Built-in Function ที่เกี่ยวกับ Sort 
+ให้น้องเขียนฟังก์ชัน Sort เอง
+
+Enter Input : 6 3 -2 5 -8 2 -2
+2 3 -2 5 -8 6 -2
+
+Enter Input : 6 5 4 -1 3 0 2 -99 1
+0 1 2 -1 3 4 5 -99 6
+
+
+
+Chapter : 9 - item : 3 - insertion sort [recursive]
+ ส่งมาแล้ว 0 ครั้ง
+เขียน function insertion sort เพื่อเรียงข้อมูลใน list 
+จากน้อยไปมาก โดยใช้ recursive
+
+และแสดงขั้นตอนของ insertion sort ตามตัวอย่าง
+
+***ห้ามใช้ คำสั่งloopต่างๆ เช่น for ,while หรือ Built-in Function
+ ที่เกี่ยวกับ Sort เช่น .sort***
+
+*** ยกเว้นให้ใช้  for ได้แค่ขั้นตอนรับ input เท่านั้น ***
+
+
+Enter Input : 1 2 3 4
+insert 2 at index 1 : [1, 2] [3, 4]
+insert 3 at index 2 : [1, 2, 3] [4]
+insert 4 at index 3 : [1, 2, 3, 4] 
+sorted
+[1, 2, 3, 4]
+
+
+Enter Input : 1 3 4 2
+insert 3 at index 1 : [1, 3] [4, 2]
+insert 4 at index 2 : [1, 3, 4] [2]
+insert 2 at index 1 : [1, 2, 3, 4] 
+sorted
+[1, 2, 3, 4]
+
+
+
+Chapter : 9 - item : 4 - Find the Running Median
+ ส่งมาแล้ว 0 ครั้ง
+เขียนโปรแกรมที่ทำการรับข้อมูลเป็น list เพื่อหาค่ามัธยฐานของ
+ข้อมูลใน list โดยจะเริ่มต้นจากข้อมูลใน list เพียง 1 ตัว
+จากนั้นค่อยๆเพิ่มไปเรื่อยๆจนครบ โดยในการหาค่ามัธยฐานเรา
+ต้องจัดเรียงข้อมูลตามลำดับจากน้อยไปหามากเสียก่อน 
+จากนั้นแสดงผลตามตัวอย่าง
+
+***ห้ามใช้ Built-in Function ที่เกี่ยวกับ Sort 
+เช่น sort, min, max,ฯลฯ***
+
+l = [e for e in input("Enter Input : ").split()]
+if l[0] == 'EX':
+    Ans = "xxx"
+    print("Extra Question : What is a suitable sort algorithm?")
+    print("   Your Answer : "+Ans)
+else:
+    l=list(map(int, l))
+    #code here
+
+***test case พิเศษเพิ่มเติม ไม่คิดคะแนน 
+และไม่มีผลต่อการผ่านโจทย์ข้อนี้หรือไม่***
+
+พี่มีคำถามมาถามน้องๆว่าในกรณีโจทย์แบบนี้ 
+ถ้าหากจำนวน  input มีจำนวนมากกว่าหมื่นตัวขึ้นไป 
+เราสามารถ sort algorithm แบบใดมาประยุกต์ใช้จึงจะเหมาะสม
+ และ ทำเวลาได้ดี
+
+- bubble sort
+
+- straight selection sort
+
+- insertion sort
+
+- shell sort
+
+- merge sort
+
+- quick sort
+
+- minHeap and maxHeap
+
+พิมพ์คำตอบลงในช่อง Ans = "xxx"
+
+***ยกมือถามได้นะถ้าสงสัยว่าทำไมเป็นอันนี้***
+
+
+Enter Input : 1 2 3 4 5 6 7 8 9
+list = [1] : median = 1.0
+list = [1, 2] : median = 1.5
+list = [1, 2, 3] : median = 2.0
+list = [1, 2, 3, 4] : median = 2.5
+list = [1, 2, 3, 4, 5] : median = 3.0
+list = [1, 2, 3, 4, 5, 6] : median = 3.5
+list = [1, 2, 3, 4, 5, 6, 7] : median = 4.0
+list = [1, 2, 3, 4, 5, 6, 7, 8] : median = 4.5
+list = [1, 2, 3, 4, 5, 6, 7, 8, 9] : median = 5.0
+
+Enter Input : 4 3 1 5 2 7 9 8
+list = [4] : median = 4.0
+list = [4, 3] : median = 3.5
+list = [4, 3, 1] : median = 3.0
+list = [4, 3, 1, 5] : median = 3.5
+list = [4, 3, 1, 5, 2] : median = 3.0
+list = [4, 3, 1, 5, 2, 7] : median = 3.5
+list = [4, 3, 1, 5, 2, 7, 9] : median = 4.0
+list = [4, 3, 1, 5, 2, 7, 9, 8] : median = 4.5
+
+
+Enter Input : 5 4 3 2 1
+list = [5] : median = 5.0
+list = [5, 4] : median = 4.5
+list = [5, 4, 3] : median = 4.0
+list = [5, 4, 3, 2] : median = 3.5
+list = [5, 4, 3, 2, 1] : median = 3.0
+
+
+Enter Input : 12 4 5 3 8 7 83
+list = [12] : median = 12.0
+list = [12, 4] : median = 8.0
+list = [12, 4, 5] : median = 5.0
+list = [12, 4, 5, 3] : median = 4.5
+list = [12, 4, 5, 3, 8] : median = 5.0
+list = [12, 4, 5, 3, 8, 7] : median = 6.0
+list = [12, 4, 5, 3, 8, 7, 83] : median = 7.0
+
+
+Chapter : 9 - item : 5 - Premier League Score
+ ส่งมาแล้ว 0 ครั้ง
+สร้างฟังก์ชันที่นำชุดข้อมูล(list)ของ football clubs 
+มีคุณสมบัติดังนี้ name, wins, loss, draws, scored, 
+conceded และทำการ return list ของ team name 
+โดยเรียงลำดับทีมที่มีคะแนน(total point)มากที่สุด 
+โดยถ้าหากมีทีมที่คะแนนเท่ากัน ให้นำผลต่างของจำนวนประตูที่ทำได้
+(scored)กับจำนวนประตูที่เสีย(conceded) มาคิด
+
+***ห้ามใช้ Built-in Function ที่เกี่ยวกับ Sort 
+เช่น sort, min, max,ฯลฯ***
+
+[ชนะได้ 3 คะแนน, เสมอได้ 1 คะแนน, แพ้ได้ 0 คะแนน]
+
+ตัวอย่าง
+team = { "name": "Manchester United", "wins": 30, "loss": 3, "draws": 5, "scored": 88, "conceded": 20 }
+
+Total Points = 3 * wins + 0 * loss + 1 * draws = 3 * 30 + 0 * 3 + 5 * 1 = 95 points
+Goal Difference = scored - conceded = 88 - 20 = 68
+
+
+Enter Input : Manchester United,30,3,5,88,20/Arsenal,24,6,8,98,29/Chelsea,22,8,8,98,29
+== results ==
+['Manchester United', {'points': 95}, {'gd': 68}]
+['Arsenal', {'points': 80}, {'gd': 69}]
+['Chelsea', {'points': 74}, {'gd': 69}]
+
+
+Enter Input : Manchester City,30,8,0,67,20/Liverpool,34,2,2,118,29/Leicester City,22,8,8,98,29
+== results ==
+['Liverpool', {'points': 104}, {'gd': 89}]
+['Manchester City', {'points': 90}, {'gd': 47}]
+['Leicester City', {'points': 74}, {'gd': 69}]
+
+Enter Input : Manchester City,30,6,2,102,20/Liverpool,24,6,8,118,29/Arsenal,30,0,8,87,39
+== results ==
+['Arsenal', {'points': 98}, {'gd': 48}]
+['Manchester City', {'points': 92}, {'gd': 82}]
+['Liverpool', {'points': 80}, {'gd': 89}]
+
+
+Enter Input : Manchester United,30,8,0,67,20/New Castle United,34,2,2,118,36/Leicester City,34,2,2,108,21
+== results ==
+['Leicester City', {'points': 104}, {'gd': 87}]
+['New Castle United', {'points': 104}, {'gd': 82}]
+['Manchester United', {'points': 90}, {'gd': 47}]
+
+Enter Input : Manchester City,30,6,2,102,20/Liverpool,24,6,8,118,29/Arsenal,28,2,8,87,39
+== results ==
+['Manchester City', {'points': 92}, {'gd': 82}]
+['Arsenal', {'points': 92}, {'gd': 48}]
+['Liverpool', {'points': 80}, {'gd': 89}]
+
+Enter Input : Chelsea,35,3,0,102,20/Manchester City,30,6,2,102,20/Liverpool,24,6,8,118,29/Arsenal,28,2,8,87,39
+== results ==
+['Chelsea', {'points': 105}, {'gd': 82}]
+['Manchester City', {'points': 92}, {'gd': 82}]
+['Arsenal', {'points': 92}, {'gd': 48}]
+['Liverpool', {'points': 80}, {'gd': 89}]
+
+
+Enter Input : Wolverhampton,4,2,1,8,8/Liverpool,5,1,1,17,15/Chelsea,3,1,3,16,9/Leicester City,5,2,0,17,9/Arsenal,4,3,0,9,7/Manchester City,3,1,2,9,8/Manchester United,2,3,1,9,13/Souththampton,4,2,1,14,12/Tottenham Hotspur,4,1,2,18,9/Everton,4,2,1,15,11/Aston Villa,4,2,0,15,9
+== results ==
+['Liverpool', {'points': 16}, {'gd': 2}]
+['Leicester City', {'points': 15}, {'gd': 8}]
+['Tottenham Hotspur', {'points': 14}, {'gd': 9}]
+['Everton', {'points': 13}, {'gd': 4}]
+['Souththampton', {'points': 13}, {'gd': 2}]
+['Wolverhampton', {'points': 13}, {'gd': 0}]
+['Chelsea', {'points': 12}, {'gd': 7}]
+['Aston Villa', {'points': 12}, {'gd': 6}]
+['Arsenal', {'points': 12}, {'gd': 2}]
+['Manchester City', {'points': 11}, {'gd': 1}]
+['Manchester United', {'points': 7}, {'gd': -4}]

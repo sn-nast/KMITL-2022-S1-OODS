@@ -1,0 +1,795 @@
+Chapter : 10 - item : 1 - หัดใช้ Binary Search
+ ส่งมาแล้ว 0 ครั้ง
+ให้น้องๆเขียน Binary Search โดยใช้ Recursive 
+เพื่อหาว่ามีค่านั้นอยู่ใน list หรือไม่ ถ้าหากมีให้ตอบ True 
+หากไม่มีให้ตอบ False
+
+***** อธิบาย Input
+1. ด้านซ้าย  จะเป็น list ของ Data
+2. ด้านขวา   จะเป็นค่าที่เราต้องการจะหา
+
+def bi_search(l, r, arr, x):
+    # Code Here
+
+inp = input('Enter Input : ').split('/')
+arr, k = list(map(int, inp[0].split())), int(inp[1])
+print(bi_search(0, len(arr) - 1, sorted(arr), k))
+
+
+Enter Input : 33 2 11 82 77 28 15 76 9 64/28
+True
+
+
+Enter Input : 33 2 11 82 77 28 15 76 9 64/50
+False
+
+
+
+
+
+
+
+Chapter : 10 - item : 2 - First Greater Value
+ ส่งมาแล้ว 0 ครั้ง
+ให้น้องเขียนโปรแกรมหาค่าที่น้อยที่สุดที่มากกว่าค่าที่ต้องการจะหา 
+ถ้าหากไม่มีให้แสดงว่า No First Greater Value 
+โดยตัวเลขของทั้ง 2 list รับประกันว่าไม่เกิน 1000000
+
+***** อธิบาย Test Case 2:
+Left : [3, 2, 7, 6, 8]         Right : [5, 6, 12]
+1. หาค่าที่น้อยที่สุดที่มากกว่า 5 จาก list (Left) จะได้เป็น 6
+2. หาค่าที่น้อยที่สุดที่มากกว่า 6 จาก list (Left) จะได้เป็น 7
+3. หาค่าที่น้อยที่สุดที่มากกว่า 12 จาก list (Left) 
+จะเห็นว่าไม่มีค่าที่มากกว่า 12 จะแสดงเป็น No First Greater Value
+
+Enter Input : 3 2 7 6 8/5
+6
+
+
+Enter Input : 3 2 7 6 8/5 6 12
+6
+7
+No First Greater Value
+
+
+
+
+
+
+
+Chapter : 10 - item : 3 - Fun with hashing
+ ส่งมาแล้ว 0 ครั้ง
+ให้น้องเขียน Hashing โดยมีการทำงานดังนี้
+
+1.  หา index ของ Table จากผลรวมของ ASCII จากค่า key 
+    จากนั้นนำมา mod ด้วยขนาดของ Table
+2.  หากเกิด Collision ให้ทำการขยับค่า index 
+    แบบ Quadratic Probing
+3.  ถ้าหากเกิด Collision จนถึงค่าที่กำหนดแล้ว 
+    ให้ทำการ Discard Data นั้นทิ้งทันที
+4.  หาก Table นั้นมี Data เต็มแล้วให้แสดงคำว่า 
+    This table is full !!!!!! หากเคยแสดงคำนี้ไป
+    แล้วไม่ต้องแสดงอีก (แสดงเพียง 1 ครั้ง)
+
+อธิบาย Input
+แบ่ง Data เป็น 2 ชุดด้วย /
+    -   ด้านซ้ายหมายถึง ขนาดของ Table และ 
+        MaxCollision ตามลำดับ
+    -   ด้านขวาหมายถึง Data n ชุด โดย Data 
+        แต่ละชุดแบ่งด้วย comma โดยใน Data 
+        แต่ละชุดจะแบ่งเป็น key กับ value ตามลำดับ
+
+class Data:
+    def __init__(self, key, value):
+        self.key = key
+        self.value = value
+
+    def __str__(self):
+        return "({0}, {1})".format(self.key, self.value)
+
+class hash:
+
+    # Code Here
+
+
+ ***** Fun with hashing *****
+Enter Input : 3 2/1+1 I,OnE Love,abcde I,#$ew2 KMITL,kk KMITL,z Love
+#1  (1+1, I)
+#2  None
+#3  None
+---------------------------
+collision number 1 at 0
+#1  (1+1, I)
+#2  (OnE, Love)
+#3  None
+---------------------------
+collision number 1 at 0
+collision number 2 at 1
+Max of collisionChain
+#1  (1+1, I)
+#2  (OnE, Love)
+#3  None
+---------------------------
+#1  (1+1, I)
+#2  (OnE, Love)
+#3  (#$ew2, KMITL)
+---------------------------
+This table is full !!!!!!
+
+
+
+ ***** Fun with hashing *****
+Enter Input : 5 5/one Un,two Deux,three Trois,four Quatre,five Cinq,ten Dix,eleven Onze
+#1  None
+#2  None
+#3  (one, Un)
+#4  None
+#5  None
+---------------------------
+#1  None
+#2  (two, Deux)
+#3  (one, Un)
+#4  None
+#5  None
+---------------------------
+collision number 1 at 1
+collision number 2 at 2
+#1  (three, Trois)
+#2  (two, Deux)
+#3  (one, Un)
+#4  None
+#5  None
+---------------------------
+#1  (three, Trois)
+#2  (two, Deux)
+#3  (one, Un)
+#4  None
+#5  (four, Quatre)
+---------------------------
+collision number 1 at 1
+collision number 2 at 2
+collision number 3 at 0
+collision number 4 at 0
+collision number 5 at 2
+Max of collisionChain
+#1  (three, Trois)
+#2  (two, Deux)
+#3  (one, Un)
+#4  None
+#5  (four, Quatre)
+---------------------------
+collision number 1 at 2
+#1  (three, Trois)
+#2  (two, Deux)
+#3  (one, Un)
+#4  (ten, Dix)
+#5  (four, Quatre)
+---------------------------
+This table is full !!!!!!
+
+
+
+
+
+
+Chapter : 10 - item : 4 - Rehashing
+ ส่งมาแล้ว 0 ครั้ง
+ให้น้องๆเขียนการทำ Rehashing ด้วยเงื่อนไขดังนี้
+1. Table เต็มถึงระดับที่กำหนด ( Threshold (%) )
+2. เมื่อเกิดการ Collision ถึงจำนวนที่กำหนด
+
+หากเกิดการ Rehashing ให้ทำการขยาย Table 
+เป็นค่า prime ถัดไปที่มากกว่าเดิม 2 เท่า เช่น 
+หาก Table ตอนแรกมีขนาด 4 และเกิดการ Rehashing  
+ตัว Table ใหม่จะมีขนาดเป็น 11 เนื่องจาก 2 เท่าของ 4 คือ 8  
+และค่า prime ที่มากกว่า 8 และใกล้ 8 มากที่สุดคือ 11
+
+การ Hash หากเกิดการ Collision ให้ใช้ 
+Quadratic Probing ในการแก้ปัญหา Collision
+
+อธิบาย Input
+แบ่ง Data เป็น 2 ชุดด้วย /
+    -   ด้านซ้ายหมายถึง ขนาดของ Table , 
+        MaxCollision และ Threshold (สูงสุด 100 %) 
+        ตามลำดับ
+        
+    -   ด้านขวาหมายถึง Data n ชุด โดย Data 
+        แต่ละชุดแบ่งด้วย spacebar และ Data 
+        แต่ละตัวเป็นจำนวนเต็มศูนย์หรือบวกเท่านั้น 
+        และไม่มี Data ซ้ำกันเด็ดขาด
+
+
+
+ ***** Rehashing *****
+Enter Input : 5 1 67/1 6
+Initial Table :
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+----------------------------------------
+Add : 1
+#1  None
+#2  1
+#3  None
+#4  None
+#5  None
+----------------------------------------
+Add : 6
+collision number 1 at 1
+****** Max collision - Rehash !!! ******
+#1  None
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  6
+#8  None
+#9  None
+#10 None
+#11 None
+----------------------------------------
+
+
+ ***** Rehashing *****
+Enter Input : 5 1 10/1 6
+Initial Table :
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+----------------------------------------
+Add : 1
+****** Data over threshold - Rehash !!! ******
+#1  None
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 None
+----------------------------------------
+Add : 6
+****** Data over threshold - Rehash !!! ******
+#1  None
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  6
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+#20 None
+#21 None
+#22 None
+#23 None
+----------------------------------------
+
+
+ ***** Rehashing *****
+Enter Input : 5 1 10/0 1 6 20
+Initial Table :
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+----------------------------------------
+Add : 0
+****** Data over threshold - Rehash !!! ******
+#1  0
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 None
+----------------------------------------
+Add : 1
+****** Data over threshold - Rehash !!! ******
+#1  0
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+#20 None
+#21 None
+#22 None
+#23 None
+----------------------------------------
+Add : 6
+****** Data over threshold - Rehash !!! ******
+#1  0
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  6
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+#20 None
+#21 None
+#22 None
+#23 None
+#24 None
+#25 None
+#26 None
+#27 None
+#28 None
+#29 None
+#30 None
+#31 None
+#32 None
+#33 None
+#34 None
+#35 None
+#36 None
+#37 None
+#38 None
+#39 None
+#40 None
+#41 None
+#42 None
+#43 None
+#44 None
+#45 None
+#46 None
+#47 None
+----------------------------------------
+Add : 20
+#1  0
+#2  1
+#3  None
+#4  None
+#5  None
+#6  None
+#7  6
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+#20 None
+#21 20
+#22 None
+#23 None
+#24 None
+#25 None
+#26 None
+#27 None
+#28 None
+#29 None
+#30 None
+#31 None
+#32 None
+#33 None
+#34 None
+#35 None
+#36 None
+#37 None
+#38 None
+#39 None
+#40 None
+#41 None
+#42 None
+#43 None
+#44 None
+#45 None
+#46 None
+#47 None
+----------------------------------------
+
+
+ ***** Rehashing *****
+Enter Input : 7 6 70/13 15 6 24 23
+Initial Table :
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+----------------------------------------
+Add : 13
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  13
+----------------------------------------
+Add : 15
+#1  None
+#2  15
+#3  None
+#4  None
+#5  None
+#6  None
+#7  13
+----------------------------------------
+Add : 6
+collision number 1 at 6
+#1  6
+#2  15
+#3  None
+#4  None
+#5  None
+#6  None
+#7  13
+----------------------------------------
+Add : 24
+#1  6
+#2  15
+#3  None
+#4  24
+#5  None
+#6  None
+#7  13
+----------------------------------------
+Add : 23
+****** Data over threshold - Rehash !!! ******
+collision number 1 at 6
+collision number 2 at 7
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  6
+#8  24
+#9  None
+#10 None
+#11 23
+#12 None
+#13 None
+#14 13
+#15 None
+#16 15
+#17 None
+----------------------------------------
+
+
+ ***** Rehashing *****
+Enter Input : 19 2 49/8741 4874 787842 77 8789 7542 751213 978458
+Initial Table :
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 8741
+#1  None
+#2  8741
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 None
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 4874
+#1  None
+#2  8741
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  None
+#10 None
+#11 4874
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 787842
+#1  None
+#2  8741
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  787842
+#9  None
+#10 None
+#11 4874
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 77
+collision number 1 at 1
+#1  None
+#2  8741
+#3  77
+#4  None
+#5  None
+#6  None
+#7  None
+#8  787842
+#9  None
+#10 None
+#11 4874
+#12 None
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 8789
+#1  None
+#2  8741
+#3  77
+#4  None
+#5  None
+#6  None
+#7  None
+#8  787842
+#9  None
+#10 None
+#11 4874
+#12 8789
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 None
+----------------------------------------
+Add : 7542
+#1  None
+#2  8741
+#3  77
+#4  None
+#5  None
+#6  None
+#7  None
+#8  787842
+#9  None
+#10 None
+#11 4874
+#12 8789
+#13 None
+#14 None
+#15 None
+#16 None
+#17 None
+#18 None
+#19 7542
+----------------------------------------
+Add : 751213
+collision number 1 at 10
+collision number 2 at 11
+****** Max collision - Rehash !!! ******
+collision number 1 at 36
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  8741
+#10 None
+#11 None
+#12 751213
+#13 None
+#14 None
+#15 None
+#16 8789
+#17 None
+#18 None
+#19 None
+#20 None
+#21 None
+#22 None
+#23 None
+#24 None
+#25 None
+#26 None
+#27 None
+#28 787842
+#29 None
+#30 None
+#31 None
+#32 None
+#33 None
+#34 None
+#35 None
+#36 None
+#37 4874
+#38 77
+#39 None
+#40 7542
+#41 None
+----------------------------------------
+Add : 978458
+#1  None
+#2  None
+#3  None
+#4  None
+#5  None
+#6  None
+#7  None
+#8  None
+#9  8741
+#10 None
+#11 None
+#12 751213
+#13 None
+#14 None
+#15 None
+#16 8789
+#17 None
+#18 None
+#19 None
+#20 None
+#21 None
+#22 None
+#23 None
+#24 None
+#25 None
+#26 None
+#27 None
+#28 787842
+#29 None
+#30 None
+#31 None
+#32 None
+#33 None
+#34 None
+#35 978458
+#36 None
+#37 4874
+#38 77
+#39 None
+#40 7542
+#41 None
+----------------------------------------
+
+
+
+
+
+
+Chapter : 10 - item : 5 - กล่องสินค้า
+ ส่งมาแล้ว 0 ครั้ง
+มีสินค้าอยู่ n ชิ้น โดยชิ้นที่ i (0 <= i < n) มีน้ำหนัก Wi กิโลกรัม  นำสินค้าบรรจุใส่กล่องไม่เกิน k ใบ โดยมีเงื่อนไขว่า
+1. สิ่งของต้องมีน้ำหนักรวมกันไม่เกินน้ำหนักมากสุดที่กล่องรับไหว
+2. หากสิ่งของชิ้นที่ a และชิ้นที่ b อยู่ในกล่องเดียวกัน (a <= b) สิ่งของทุกชิ้นที่อยู่ระหว่างสองชิ้นนี้ (ทุกชิ้นที่ i ที่ a < i < b) จะต้องอยู่ในกล่องนี้ด้วย (นั่นคือสิ่งที่ของในกล่องเดียวกันจะต้องเป็นสิ่งของที่ตำแหน่งติดกัน)
+
+ถ้าทุกกล่องสามารถรับน้ำหนักได้เท่ากัน จงหาว่าเราสามารถใช้กล่องที่รับน้ำหนักได้น้อยสุดเท่าใด โดยที่ยังบรรจุของตามเงื่อนไขได้ และใช้กล่องครบทุกใบ
+
+อธิบาย Input
+แบ่ง Data เป็น 2 ชุดด้วย /
+    -   ด้านซ้ายหมายถึง สินค้า n ชิ้น และแต่ละชิ้นมีน้ำหนัก W กิโลกรัม
+    -   ด้านขวาหมายถึง จำนวนกล่อง k ใบ
+
+คำใบ้  Optimization Problem
+
+
+อธิบาย Test Case #1
+
+มีสินค้าอยู่ 5 ชิ้น โดยมีน้ำหนักเป็น 6 2 4 3 7 ตามลำดับ และมีกล่องจำนวน 3 ใบ   และน้ำหนักที่น้อยที่สุดที่สามารถใส่สินค้าได้ครบทุกชิ้น และใส่ลงกล่องได้ทุกใบคือ 8 กิโลกรัม โดยในกล่องที่ 1 จะใส่สินค้า 2 ชิ้นที่มีน้ำหนัก 6 และ 2   กล่องใบที่ 2 จะใส่สินค้า 2 ชิ้นที่มำน้ำหนัก 4 และ 3  และกล่องใบที่ 3 จะใส่สินค้า 1 ชิ้นที่มีน้ำหนัก 7
+
+อธิบาย Test Case #2
+
+มีสินค้าอยู่ 10 ชิ้น โดยมีน้ำหนักเป็น 8 7 2 5 1 10 9 2 3 5 ตามลำดับ และมีกล่องจำนวน 5 ใบ   และน้ำหนักที่น้อยที่สุดที่สามารถใส่สินค้าได้ครบทุกชิ้น และใส่ลงกล่องได้ทุกใบคือ 14 กิโลกรัม โดยในกล่องที่ 1 จะใส่สินค้า 1 ชิ้นที่มีน้ำหนัก 8   กล่องใบที่ 2 จะใส่สินค้า 3 ชิ้นที่มีน้ำหนัก 7 2 และ 5   กล่องใบที่ 3 จะใส่สินค้า 2 ชิ้นที่มีน้ำหนัก 1 และ 10   กล่องใบที่ 4 จะใส่สินค้า 3 ชิ้นที่มีน้ำหนัก 9 2 และ 3    และกล่องใบที่ 5 จะใส่สินค้า 1 ชิ้นที่มีน้ำหนัก 5
+
+
+
+Enter Input : 6 2 4 3 7/3
+Minimum weigth for 3 box(es) = 8
+
+
+Enter Input : 8 7 2 5 1 10 9 2 3 5/5
+Minimum weigth for 5 box(es) = 14
+
+Enter Input : 19 1 2 3 4/1
+Minimum weigth for 1 box(es) = 29
+
+Enter Input : 19 1 2 3 4/2
+Minimum weigth for 2 box(es) = 19
+
+Enter Input : 6 4 9 3 1 8 5 2/5
+Minimum weigth for 5 box(es) = 10
