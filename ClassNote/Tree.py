@@ -27,7 +27,7 @@ class AVL:
         def _set_right(self, data):
             self.__right = data if isinstance(data, AVL.Node) else AVL.Node(data)
             
-        def is_node(other):
+        def is_node(other):  # sourcery skip: instance-method-first-arg-name
             return isinstance(other, AVL.Node)
         
     def __init__(self):

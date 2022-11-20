@@ -8,58 +8,62 @@ class Team:
         self.draws = int(data[3])
         self.scored = int(data[4])
         self.conceded = int(data[5])
-    
+
     def get_total_point(self):
         point = {'win': 3, 'draw': 1, 'loss': 0}
         return self.wins*point['win'] + self.draws*point['draw']
-    
+
     def get_goal_dif(self):
         return self.scored-self.conceded
-    
+
     def get_info(self):
         return [
             self.name,
-            {'point': self.get_total_point()},
+            {'points': self.get_total_point()},
             {'gd': self.get_goal_dif()}
         ]
-        
+
+
 class Sort:
     def sort_point(self, list):
         for i in range(1, len(list)):
             i_data = list[i]
             for j in range(i, -1, -1):
                 if i_data.get_total_point() > list[j-1].get_total_point() \
-                    and j > 0:
+                        and j > 0:
                     list[j] = list[j-1]
                 else:
                     list[j] = i_data
                     break
         list = self.sort_goal_diff(list)
         return list
-    
+
     def sort_goal_diff(self, list):
         for i in range(0, len(list)):
-            if i < len(list)-1 :
+            if i < len(list)-1:
                 idx = i
                 for x in range(i, len(list)):
                     if list[x].get_total_point() == list[x+1].get_total_point():
                         idx += 1
-                    else: 
+                    else:
                         break
                 for last in range(idx, i-1, -1):
                     for x in range(i, last):
                         if list[x].get_goal_dif() < list[x+1].get_goal_dif():
                             list[x], list[x+1] = list[x+1], list[x]
         return list
-    
+
+
 input = [i.split(',') for i in [x for x in input("Enter Input : ").split("/")]]
+# input = [i.split(',') for i in [x for x in "United,30,3,5,88,20/Arsenal,24,6,8,98,29/Chelsea,22,8,8,98,29".split("/")]]
 teams = []
 print("== results ==")
 
 for i in input:
     teams.append(Team(i))
 
-Sort.sort_point(teams)
+sort = Sort()
+team = sort.sort_point(teams)
 
 for i in teams:
     print(i.get_info())
